@@ -9,54 +9,44 @@
 body{
     margin:0;
     height:100vh;
-    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family:sans-serif;
-
-    background: linear-gradient(-45deg,#ffd1dc,#ffc0cb,#ffe4e1,#ffd6e8);
-    background-size:400% 400%;
-    animation:bgMove 12s infinite;
+    background: linear-gradient(135deg,#ffd1dc,#ffe4e1);
+    font-family: Arial, sans-serif;
 }
 
-@keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-.card{
-    background:white;
-    padding:60px;
-    border-radius:20px;
+.container{
     text-align:center;
-    width:600px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 h1{
     color:#d81b60;
+    margin-bottom:20px;
 }
 
-#message{
-    margin-top:20px;
-    font-size:20px;
-    min-height:40px;
+/* image frame */
+.frame{
+    width:700px;
+    height:500px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,0.2);
 }
 
-/* hearts */
-.heart{
-    position:absolute;
-    bottom:-20px;
-    font-size:20px;
-    animation:float 6s linear infinite;
+/* image perfect fit */
+.frame img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
-@keyframes float{
-    0%{transform:translateY(0);opacity:0;}
-    30%{opacity:1;}
-    100%{transform:translateY(-100vh);opacity:0;}
+/* text below image */
+.caption{
+    margin-top:15px;
+    font-size:22px;
+    color:#6b2b3c;
 }
 
 </style>
@@ -64,48 +54,42 @@ h1{
 
 <body>
 
-<div class="card">
+<div class="container">
+
     <h1>Jasleen Babbyyyy ❤️</h1>
-    <p id="message"></p>
+
+    <div class="frame">
+        <img id="slide" src="img1.jpg">
+    </div>
+
+    <div class="caption" id="caption">
+        A little smile for you 😊
+    </div>
+
 </div>
 
 <script>
 
-const messages = [
-"Some people come quietly into life...",
-"And everything starts feeling softer.",
-"Smiles stay longer.",
-"Days feel lighter.",
-"This little page is just for you.",
-"Because you are special to me.",
-"Happy Valentine’s Day ❤️"
+const slides = [
+    {img:"img1.jpg", text:"A little smile for you 😊"},
+    {img:"img2.jpg", text:"Because you make days happier ❤️"},
+    {img:"img3.jpg", text:"Sending you hugs 🤗"},
+    {img:"img4.jpg", text:"You make moments special 💕"},
+    {img:"img5.jpg", text:"Just wanted to make you smile 😄"},
+    {img:"img6.jpg", text:"Happy Valentine's Day ❤️"}
 ];
 
 let i = 0;
-const msg = document.getElementById("message");
 
-function changeText(){
-    msg.innerHTML = messages[i];
+function changeSlide(){
     i++;
+    if(i >= slides.length) i = 0;
 
-    if(i >= messages.length){
-        clearInterval(loop);
-    }
+    document.getElementById("slide").src = slides[i].img;
+    document.getElementById("caption").innerHTML = slides[i].text;
 }
 
-changeText();
-let loop = setInterval(changeText,4000);
-
-/* hearts animation */
-setInterval(function(){
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤️";
-    heart.style.left=Math.random()*100+"vw";
-    document.body.appendChild(heart);
-
-    setTimeout(()=>heart.remove(),6000);
-},700);
+setInterval(changeSlide, 3500);
 
 </script>
 
