@@ -5,27 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Jasleen ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
 body{
+    margin:0;
     height:100vh;
     overflow:hidden;
-    background: linear-gradient(-45deg,#ffd1dc,#ffc0cb,#ffe4e1,#ffd6e8);
-    background-size:400% 400%;
-    animation:bgMove 18s ease infinite;
     display:flex;
     justify-content:center;
     align-items:center;
-    color:#6b2b3c;
+    font-family:Arial, sans-serif;
+
+    background: linear-gradient(-45deg,#ffd1dc,#ffc0cb,#ffe4e1,#ffd6e8);
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
 }
 
 @keyframes bgMove{
@@ -35,134 +27,99 @@ body{
 }
 
 .card{
-    background:rgba(255,255,255,0.55);
-    backdrop-filter:blur(18px);
-    padding:90px;
-    border-radius:30px;
-    width:780px;
+    background:rgba(255,255,255,0.7);
+    padding:70px;
+    border-radius:20px;
     text-align:center;
-    box-shadow:0 20px 60px rgba(255,105,135,0.25);
+    width:650px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.15);
 }
 
 h1{
-    font-size:2.8rem;
-    opacity:0;
-    transition:1.5s;
+    margin:0;
+    font-size:36px;
+    color:#c2185b;
 }
 
 #message{
-    font-size:1.3rem;
-    margin-top:30px;
-    min-height:90px;
+    margin-top:25px;
+    font-size:20px;
+    min-height:60px;
     opacity:0;
-    transition:1.2s;
+    transition:opacity 1s;
 }
 
 .show{
-    opacity:1 !important;
-}
-
-/* floating red hearts */
-.heart{
-    position:absolute;
-    bottom:-20px;
-    font-size:18px;
-    opacity:0.6;
-    animation:heartFloat 8s linear infinite;
-}
-
-@keyframes heartFloat{
-    0%{transform:translateY(0); opacity:0;}
-    30%{opacity:0.7;}
-    100%{transform:translateY(-100vh); opacity:0;}
-}
-
-button{
-    margin-top:30px;
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    background:#ff8fab;
-    color:white;
-    font-size:1rem;
-    cursor:pointer;
-    opacity:0;
-    transition:0.6s;
-}
-
-button.showBtn{
     opacity:1;
 }
 
+/* hearts */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation:float 7s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0); opacity:0;}
+    30%{opacity:1;}
+    100%{transform:translateY(-100vh); opacity:0;}
+}
 </style>
 </head>
 
 <body>
 
 <div class="card">
-    <h1 id="name">Jasleen Babbyyyy 🤭 ❤️</h1>
+    <h1 id="name">Jasleen Babbyyyy ❤️</h1>
     <p id="message"></p>
-    <button id="btn" onclick="finalMsg()">One More Thing...</button>
 </div>
 
 <script>
 
 const messages = [
-"Some people come into life quietly 🤫💓💓...",
-"And somehow everything starts feeling softer❤️🥰.",
-"Smiles stay longer. Days feel lighter😚😚.",
-"This little page is small, but the feeling behind it isn’t."🤭🤭,
-"Because some people deserve effort, not just words."🌚🤭🤭,
-"And you are one of those people."❤️❤️🥹,
-"You make ordinary moments feel beautiful."🤭🤭💓❤️,
-"So today, I just want to say..."🌚❤️,
-"You are truly special to me Jasleen babyy. 🌚❤️😚❤️"
+"Some people come into life quietly...",
+"And somehow everything starts feeling softer.",
+"Smiles stay longer. Days feel lighter.",
+"This little page is small, but the feeling behind it isn’t.",
+"Because some people deserve effort, not just words.",
+"And you are one of those people.",
+"You make ordinary moments feel beautiful.",
+"So today, I just want to say...",
+"You are truly special to me. ❤️"
 ];
 
-let i=0;
-const msg=document.getElementById("message");
-const name=document.getElementById("name");
-const btn=document.getElementById("btn");
-
-/* show name first */
-setTimeout(()=>{
-    name.classList.add("show");
-},1200);
+let i = 0;
+const msg = document.getElementById("message");
 
 function showMessage(){
-    if(i < messages.length){
-        msg.classList.remove("show");
-        setTimeout(()=>{
-            msg.innerHTML=messages[i];
-            msg.classList.add("show");
-            i++;
-        },400);
-    } else {
-        btn.classList.add("showBtn");
-        clearInterval(loop);
-    }
+    msg.classList.remove("show");
+
+    setTimeout(()=>{
+        msg.innerHTML = messages[i];
+        msg.classList.add("show");
+        i++;
+
+        if(i >= messages.length){
+            clearInterval(loop);
+        }
+    },400);
 }
 
-setTimeout(()=>{
-    showMessage();
-    loop=setInterval(showMessage,6000);
-},3000);
+showMessage();
+let loop = setInterval(showMessage,5000);
 
-function finalMsg(){
-    msg.innerHTML="I love you Jasleen babyy❤️❤️🤭 Happy Valentine’s Day Meri Rasmalai❤️ ❤️";
-}
-
-/* floating hearts generator */
+/* floating hearts */
 setInterval(()=>{
     const heart=document.createElement("div");
-    heart.classList.add("heart");
+    heart.className="heart";
     heart.innerHTML="❤️";
     heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(16+Math.random()*14)+"px";
     document.body.appendChild(heart);
 
-    setTimeout(()=>heart.remove(),8000);
-},700);
+    setTimeout(()=>heart.remove(),7000);
+},800);
 
 </script>
 
