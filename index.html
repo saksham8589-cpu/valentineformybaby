@@ -62,20 +62,18 @@ h1{
     opacity:1 !important;
 }
 
-/* floating light particles */
-.particle{
+/* floating red hearts */
+.heart{
     position:absolute;
-    width:8px;
-    height:8px;
-    background:white;
-    border-radius:50%;
-    opacity:0.4;
-    animation:float 10s linear infinite;
+    bottom:-20px;
+    font-size:18px;
+    opacity:0.6;
+    animation:heartFloat 8s linear infinite;
 }
 
-@keyframes float{
+@keyframes heartFloat{
     0%{transform:translateY(0); opacity:0;}
-    40%{opacity:0.5;}
+    30%{opacity:0.7;}
     100%{transform:translateY(-100vh); opacity:0;}
 }
 
@@ -102,7 +100,7 @@ button.showBtn{
 <body>
 
 <div class="card">
-    <h1 id="name">Jasleen Babbyyyy ❤️</h1>
+    <h1 id="name">Jasleen Babbyyyy 🤭 ❤️</h1>
     <p id="message"></p>
     <button id="btn" onclick="finalMsg()">One More Thing...</button>
 </div>
@@ -110,15 +108,15 @@ button.showBtn{
 <script>
 
 const messages = [
-"Some people come into life quietly...",
-"And somehow everything starts feeling softer.",
-"Smiles stay longer. Days feel lighter.",
-"This page is small, but the feeling behind it isn’t.",
-"Because some people deserve effort, not just words.",
-"And you are one of those people.",
-"You make ordinary moments feel beautiful.",
-"So today, I just want to say...",
-"You are truly special to me. ❤️"
+"Some people come into life quietly 🤫💓💓...",
+"And somehow everything starts feeling softer❤️🥰.",
+"Smiles stay longer. Days feel lighter😚😚.",
+"This little page is small, but the feeling behind it isn’t."🤭🤭,
+"Because some people deserve effort, not just words."🌚🤭🤭,
+"And you are one of those people."❤️❤️🥹,
+"You make ordinary moments feel beautiful."🤭🤭💓❤️,
+"So today, I just want to say..."🌚❤️,
+"You are truly special to me Jasleen babyy. 🌚❤️😚❤️"
 ];
 
 let i=0;
@@ -129,7 +127,7 @@ const btn=document.getElementById("btn");
 /* show name first */
 setTimeout(()=>{
     name.classList.add("show");
-},1500);
+},1200);
 
 function showMessage(){
     if(i < messages.length){
@@ -138,7 +136,7 @@ function showMessage(){
             msg.innerHTML=messages[i];
             msg.classList.add("show");
             i++;
-        },600);
+        },400);
     } else {
         btn.classList.add("showBtn");
         clearInterval(loop);
@@ -147,22 +145,24 @@ function showMessage(){
 
 setTimeout(()=>{
     showMessage();
-    loop=setInterval(showMessage,10000);
-},4000);
+    loop=setInterval(showMessage,6000);
+},3000);
 
 function finalMsg(){
-    msg.innerHTML="I hope this made you smile today. Happy Valentine’s Day ❤️";
+    msg.innerHTML="I love you Jasleen babyy❤️❤️🤭 Happy Valentine’s Day Meri Rasmalai❤️ ❤️";
 }
 
-/* particles */
+/* floating hearts generator */
 setInterval(()=>{
-    const p=document.createElement("div");
-    p.classList.add("particle");
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(8+Math.random()*5)+"s";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),12000);
-},800);
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(16+Math.random()*14)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),8000);
+},700);
 
 </script>
 
