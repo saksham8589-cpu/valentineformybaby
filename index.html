@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Jasleen ❤️</title>
 
 <style>
+
 body{
     margin:0;
     height:100vh;
@@ -13,11 +13,11 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family:Arial, sans-serif;
+    font-family:sans-serif;
 
     background: linear-gradient(-45deg,#ffd1dc,#ffc0cb,#ffe4e1,#ffd6e8);
     background-size:400% 400%;
-    animation:bgMove 15s ease infinite;
+    animation:bgMove 12s infinite;
 }
 
 @keyframes bgMove{
@@ -27,30 +27,22 @@ body{
 }
 
 .card{
-    background:rgba(255,255,255,0.7);
-    padding:70px;
+    background:white;
+    padding:60px;
     border-radius:20px;
     text-align:center;
-    width:650px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.15);
+    width:600px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 h1{
-    margin:0;
-    font-size:36px;
-    color:#c2185b;
+    color:#d81b60;
 }
 
 #message{
-    margin-top:25px;
+    margin-top:20px;
     font-size:20px;
-    min-height:60px;
-    opacity:0;
-    transition:opacity 1s;
-}
-
-.show{
-    opacity:1;
+    min-height:40px;
 }
 
 /* hearts */
@@ -58,68 +50,62 @@ h1{
     position:absolute;
     bottom:-20px;
     font-size:20px;
-    animation:float 7s linear infinite;
+    animation:float 6s linear infinite;
 }
 
 @keyframes float{
-    0%{transform:translateY(0); opacity:0;}
+    0%{transform:translateY(0);opacity:0;}
     30%{opacity:1;}
-    100%{transform:translateY(-100vh); opacity:0;}
+    100%{transform:translateY(-100vh);opacity:0;}
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="card">
-    <h1 id="name">Jasleen Babbyyyy ❤️</h1>
+    <h1>Jasleen Babbyyyy ❤️</h1>
     <p id="message"></p>
 </div>
 
 <script>
 
 const messages = [
-"Some people come into life quietly...",
-"And somehow everything starts feeling softer.",
-"Smiles stay longer. Days feel lighter.",
-"This little page is small, but the feeling behind it isn’t.",
-"Because some people deserve effort, not just words.",
-"And you are one of those people.",
-"You make ordinary moments feel beautiful.",
-"So today, I just want to say...",
-"You are truly special to me. ❤️"
+"Some people come quietly into life...",
+"And everything starts feeling softer.",
+"Smiles stay longer.",
+"Days feel lighter.",
+"This little page is just for you.",
+"Because you are special to me.",
+"Happy Valentine’s Day ❤️"
 ];
 
 let i = 0;
 const msg = document.getElementById("message");
 
-function showMessage(){
-    msg.classList.remove("show");
+function changeText(){
+    msg.innerHTML = messages[i];
+    i++;
 
-    setTimeout(()=>{
-        msg.innerHTML = messages[i];
-        msg.classList.add("show");
-        i++;
-
-        if(i >= messages.length){
-            clearInterval(loop);
-        }
-    },400);
+    if(i >= messages.length){
+        clearInterval(loop);
+    }
 }
 
-showMessage();
-let loop = setInterval(showMessage,5000);
+changeText();
+let loop = setInterval(changeText,4000);
 
-/* floating hearts */
-setInterval(()=>{
-    const heart=document.createElement("div");
+/* hearts animation */
+setInterval(function(){
+    let heart=document.createElement("div");
     heart.className="heart";
-    heart.innerHTML="💓";
+    heart.innerHTML="❤️";
     heart.style.left=Math.random()*100+"vw";
     document.body.appendChild(heart);
 
-    setTimeout(()=>heart.remove(),7000);
-},800);
+    setTimeout(()=>heart.remove(),6000);
+},700);
 
 </script>
 
